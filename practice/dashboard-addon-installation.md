@@ -13,6 +13,12 @@ dashboard-controller.yaml  dashboard-service.yaml dashboard-rbac.yaml
 
 已经修改好的 yaml 文件见：[../manifests/dashboard](https://github.com/rootsongjc/kubernetes-handbook/blob/master/manifests/dashboard)
 
+文件中的kubernetes-dashboard-amd64镜像为本地镜像地址需要修改为对应的镜像地址和版本：
+
+kubernetes 1.7.11 可以使用此镜像地址： registry.cn-qingdao.aliyuncs.com/haitao/kubernetes-dashboard-amd64:v1.7.0   替换 dashboard-controller.yaml 文件中的镜像地址
+
+
+
 由于 `kube-apiserver` 启用了 `RBAC` 授权，而官方源码目录的 `dashboard-controller.yaml` 没有定义授权的 ServiceAccount，所以后续访问 API server 的 API 时会被拒绝，web中提示：
 
 ```
@@ -63,7 +69,7 @@ $ diff dashboard-controller.yaml.orig dashboard-controller.yaml
 23c23
 <         image: gcr.io/google_containers/kubernetes-dashboard-amd64:v1.6.0
 ---
->         image: sz-pg-oam-docker-hub-001.tendcloud.com/library/kubernetes-dashboard-amd64:v1.6.0
+>         image: harbor-001.jimmysong.io/library/kubernetes-dashboard-amd64:v1.6.0
 ```
 
 ## 执行所有定义文件
@@ -158,7 +164,7 @@ Kubernetes 1.6 版本的 dashboard 的镜像已经到了 v1.6.3 版本，我们�
 修改 `dashboard-controller.yaml` 文件中的镜像的版本将 `v1.6.0` 更改为 `v1.6.3`。
 
 ```yaml
-image: sz-pg-oam-docker-hub-001.tendcloud.com/library/kubernetes-dashboard-amd64:v1.6.3
+image: harbor-001.jimmysong.io/library/kubernetes-dashboard-amd64:v1.6.3
 ```
 
 然后执行下面的命令：
@@ -195,6 +201,22 @@ Dashboard 的访问地址不变，重新访问 <http://172.20.0.113:8080/api/v1/
 
 关于如何将dashboard从1.6版本升级到1.7版本请参考[升级dashboard](dashboard-upgrade.md)。
 
+
+
+## 问题
+
+1. 按照教程安装后，发现dashboard pod 无法启动
+
+   ```
+   kubectl -n kube-system describe pod dashboard-xxxxxxx
+   ```
+
+   ![pod无法正常启动](../images/dashboard-addon-installation001.png)
+
+   可以尝试删除所有相关“资源”再重试一次，如：secret、serviceaccount、service、pod、deployment
+
+   
+
 ## 参考
 
-[WebUI(Dashboard) 文档](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/)
+- [WebUI(Dashboard) 文档](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/)

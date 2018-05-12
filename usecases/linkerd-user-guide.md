@@ -33,7 +33,7 @@ openzipkin/zipkin:1.20
 tutum/dnsutils:latest
 ```
 
-这些镜像可以直接通过 Docker Hub 获取，我将它们下载下来并上传到了自己的私有镜像仓库 `sz-pg-oam-docker-hub-001.tendcloud.com` 中，下文中用到的镜像皆来自我的私有镜像仓库，yaml 配置见 [linkerd](../manifests/linkerd) 目录，并在使用时将配置中的镜像地址修改为你自己的。
+这些镜像可以直接通过 Docker Hub 获取，我将它们下载下来并上传到了自己的私有镜像仓库 `harbor-001.jimmysong.io` 中，下文中用到的镜像皆来自我的私有镜像仓库，yaml 配置见 [linkerd](../manifests/linkerd) 目录，并在使用时将配置中的镜像地址修改为你自己的。
 
 ## 部署
 
@@ -283,7 +283,5 @@ Hello (172.30.60.14) world (172.30.71.19)!!
 ## 参考
 
 - https://github.com/linkerd/linkerd-examples
-
 - [A Service Mesh for Kubernetes](https://cdn2.hubspot.net/hubfs/2818724/A%20Service%20Mesh%20for%20Kubernetes_Final.pdf)
-
 - [dtab](https://linkerd.io/in-depth/dtabs/)

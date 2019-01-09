@@ -18,7 +18,7 @@ Pause容器，是可以自己来定义，官方使用的`gcr.io/google_container
 
 ## Pause容器的作用
 
-我们检查nod节点的时候会发现每个node上都运行了很多的pause容器，例如如下。
+我们检查node节点的时候会发现每个node上都运行了很多的pause容器，例如如下。
 
 ```bash
 $ docker ps
@@ -93,5 +93,5 @@ root        87  0.0  0.0  17500  2080 pts/0    R+   14:10   0:00 ps aux
 ## 参考
 
 - [The Almighty Pause Container](https://www.ianlewis.org/en/almighty-pause-container)
-- [Kubernetes只Pause容器](https://o-my-chenjian.com/2017/10/17/The-Pause-Container-Of-Kubernetes/)
+- [Kubernetes之Pause容器](https://o-my-chenjian.com/2017/10/17/The-Pause-Container-Of-Kubernetes/)
 

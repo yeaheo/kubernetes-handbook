@@ -2,7 +2,7 @@
 
 我们复用kubernetes的三台主机做glusterfs存储。
 
-以下步骤参考自：https://www.xf80.com/2017/04/21/kubernetes-glusterfs/（该网站已无法访问）
+以下步骤参考自：`https://www.xf80.com/2017/04/21/kubernetes-glusterfs/`（该网站已无法访问）
 
 ## 安装glusterfs
 
@@ -135,8 +135,6 @@ $ gluster volume set k8s-volume performance.write-behind-window-size 1024MB
 
 ## Kubernetes中配置glusterfs
 
-官方的文档见：https://github.com/kubernetes/kubernetes/tree/master/examples/volumes/glusterfs
-
 以下用到的所有yaml和json配置文件可以在[../manifests/glusterfs](https://github.com/rootsongjc/kubernetes-handbook/blob/master/manifests/glusterfs)中找到。注意替换其中私有镜像地址为你自己的镜像地址。
 
 
@@ -161,7 +159,7 @@ $ vi /etc/hosts
 ## 配置 endpoints
 
 ```bash
-$ curl -O https://raw.githubusercontent.com/kubernetes/kubernetes/master/examples/volumes/glusterfs/glusterfs-endpoints.json
+$ curl -O https://raw.githubusercontent.com/kubernetes/examples/master/staging/volumes/glusterfs/glusterfs-endpoints.json
 
 # 修改 endpoints.json ，配置 glusters 集群节点ip
 # 每一个 addresses 为一个 ip 组
@@ -190,7 +188,7 @@ $ kubectl get ep
 ## 配置 service
 
 ```bash
-$ curl -O https://raw.githubusercontent.com/kubernetes/kubernetes/master/examples/volumes/glusterfs/glusterfs-service.json
+$ curl -O https://raw.githubusercontent.com/kubernetes/examples/master/staging/volumes/glusterfs/glusterfs-service.json
 
 # service.json 里面查找的是 enpointes 的名称与端口，端口默认配置为 1，我改成了1990
 
@@ -204,7 +202,7 @@ $ kubectl get svc
 ## 创建测试 pod
 
 ```bash
-$ curl -O https://raw.githubusercontent.com/kubernetes/kubernetes/master/examples/volumes/glusterfs/glusterfs-pod.json
+$ curl -O https://raw.githubusercontent.com/kubernetes/examples/master/staging/volumes/glusterfs/glusterfs-pod.json
 
 # 编辑 glusterfs-pod.json
 # 修改 volumes  下的 path 为上面创建的 volume 名称
@@ -351,5 +349,3 @@ index.html
 ## 参考
 
 - [CentOS 7 安装 GlusterFS](http://www.cnblogs.com/jicki/p/5801712.html)
-- [GlusterFS with kubernetes](https://github.com/kubernetes/kubernetes/tree/master/examples/volumes/glusterfs)
-

@@ -1,5 +1,7 @@
 # Envoy 作为前端代理
 
+ **注意：本书中的 Service Mesh 章节已不再维护，请转到 [istio-handbook](https://jimmysong.io/istio-handbook) 中浏览。**
+
 本文是使用 Envoy 作为前端代理的介绍，仅使用 docker 容器和 docker-compose 做编排在单机中运行，帮助我们从更底层了解 Envoy，当我们将 Envoy 作为 Istio Service Mesh 的 data panel 的时候将更加游刃有余。
 
 ## 快速开始
@@ -92,7 +94,7 @@ networks:
 
 其中 `front-envoy` 是前端（边缘）Envoy 服务，用来做反向代理，它使用的是 `Dockerfile-frontenvoy` 文件来构建镜像的，我们来看下该 `Dockerfile` 的内容。
 
-```dockerfile
+```docker
 FROM envoyproxy/envoy:latest
 
 RUN apt-get update && apt-get -q install -y \
@@ -188,7 +190,7 @@ example_front-envoy_1   /bin/sh -c /usr/local/bin/ ... Up       0.0.0.0:8000->80
 
 ```bash
 $ curl -v localhost:8000/service/1
-* 
+*
 Trying ::1...
 * TCP_NODELAY set
 * Connected to localhost (::1) port 8000 (#0)

@@ -136,7 +136,7 @@ spec:
 
 任何大于200小于400的返回码都会认定是成功的返回码。其他返回码都会被认为是失败的返回码。
 
-查看该server的源码：[server.go](http://k8s.io/docs/user-guide/liveness/image/server.go).
+查看该server的源码：[server.go](https://github.com/kubernetes/kubernetes/blob/master/test/images/liveness/server.go).
 
 最开始的10秒该容器是活着的， `/healthz` handler返回200的状态码。这之后将返回500的返回码。
 
@@ -241,7 +241,7 @@ Readiness和livenss probe可以并行用于同一容器。 使用两者可以确
 
 ## 配置Probe
 
-[Probe](https://kubernetes.io/docs/api-reference/v1.6/#probe-v1-core)中有很多精确和详细的配置，通过它们你能准确的控制liveness和readiness检查：
+Probe 中有很多精确和详细的配置，通过它们你能准确的控制liveness和readiness检查：
 
 - `initialDelaySeconds`：容器启动后第一次执行探测是需要等待多少秒。
 - `periodSeconds`：执行探测的频率。默认是10秒，最小1秒。
@@ -249,13 +249,13 @@ Readiness和livenss probe可以并行用于同一容器。 使用两者可以确
 - `successThreshold`：探测失败后，最少连续探测成功多少次才被认定为成功。默认是1。对于liveness必须是1。最小值是1。 
 - `failureThreshold`：探测成功后，最少连续探测失败多少次才被认定为失败。默认是3。最小值是1。
 
-[HTTP probe](https://kubernetes.io/docs/api-reference/v1.6/#httpgetaction-v1-core)中可以给 `httpGet`设置其他配置项：
+HTTP probe 中可以给 `httpGet`设置其他配置项：
 
 - `host`：连接的主机名，默认连接到pod的IP。你可能想在http header中设置"Host"而不是使用IP。
 - `scheme`：连接使用的schema，默认HTTP。
 - `path`: 访问的HTTP server的path。
 - `httpHeaders`：自定义请求的header。HTTP运行重复的header。
-- `port`：访问的容器的端口名字或者端口号。端口号必须介于1和65525之间。
+- `port`：访问的容器的端口名字或者端口号。端口号必须介于1和65535之间。
 
 对于HTTP探测器，kubelet向指定的路径和端口发送HTTP请求以执行检查。 Kubelet将probe发送到容器的IP地址，除非地址被`httpGet`中的可选`host`字段覆盖。 在大多数情况下，你不想设置主机字段。 有一种情况下你可以设置它。 假设容器在127.0.0.1上侦听，并且Pod的`hostNetwork`字段为true。 然后，在`httpGet`下的`host`应该设置为127.0.0.1。 如果你的pod依赖于虚拟主机，这可能是更常见的情况，你不应该是用`host`，而是应该在`httpHeaders`中设置`Host`头。
 

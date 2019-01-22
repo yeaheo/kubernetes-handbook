@@ -2,7 +2,7 @@
 
 ## 理解Pod
 
-Pod是kubernetes中你可以创建和部署的最小也是最简的单位。一个Pod代表着集群中运行的一个进程。
+Pod是kubernetes中你可以创建和部署的最小也是最简的单位。Pod代表着集群中运行的进程。
 
 Pod中封装着应用的容器（有的情况下是好几个容器），存储、独立的网络IP，管理容器如何运行的策略选项。Pod代表着部署的一个单位：kubernetes中应用的一个实例，可能由一个或者多个容器组合在一起共享资源。
 
@@ -16,8 +16,8 @@ Pod中封装着应用的容器（有的情况下是好几个容器），存储�
 
 [Kubernetes Blog](http://blog.kubernetes.io) 有关于Pod用例的详细信息，查看：
 
-- [The Distributed System Toolkit: Patterns for Composite Containers](http://blog.kubernetes.io/2015/06/the-distributed-system-toolkit-patterns.html)
-- [Container Design Patterns](http://blog.kubernetes.io/2016/06/container-design-patterns.html)
+- [The Distributed System Toolkit: Patterns for Composite Containers](https://kubernetes.io/blog/2015/06/the-distributed-system-toolkit-patterns/)
+- [Container Design Patterns](https://kubernetes.io/blog/2016/06/container-design-patterns/)
 
 每个Pod都是应用的一个实例。如果你想平行扩展应用的话（运行多个实例），你应该运行多个Pod，每个Pod都是一个应用实例。在Kubernetes中，这通常被称为replication。
 
@@ -37,7 +37,7 @@ Pod中可以共享两种资源：网络和存储。
 
 #### 存储
 
-可以Pod指定多个共享的Volume。Pod中的所有容器都可以访问共享的volume。Volume也可以用来持久化Pod中的存储资源，以防容器重启后文件丢失。
+可以为一个Pod指定多个共享的Volume。Pod中的所有容器都可以访问共享的volume。Volume也可以用来持久化Pod中的存储资源，以防容器重启后文件丢失。
 
 ## 使用Pod
 
